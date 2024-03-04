@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rogue Doc</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="of-hidden">
+    <div class="menu-bar">
+        <div class="logo">
+            <img src="img/logo.png" alt="The Rogue Doc">
+        </div>
+    </div>
+    <div class="intro-bg">
+        <video>
+            <source src="video/intro.mp4" type="video/mp4">
+        </video>
+
+        <div class="play"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                    d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="about-sect" id="about-sect">
+        <h1>The Rogue Doc - Coming Soon!</h1>
+        <div class="description">
+            <p>As a root cause detective, The Rogue Doc, aka Dr. Stuti Gupta, listens to your
+                life story and health journey for clues and missing pieces. We treat the cause,
+                and the disease goes away as a side effect. We don’t look for disease. We look
+                for imbalances or dysfunction to correct and help the body get back to what
+                it’s supposed to be doing naturally. We step away from the disease paradigm
+                (you’re not just the disease or diagnosis you have been labeled) and shift the
+                perspective, and this is where the detective work in collaboration with the
+                client comes into play for true biohacking and longevity goals. The main goal
+                is to restore health for optimal wellness and quality of life. The rest is a
+                bonus.</p>
+            <p>
+                Take a leap of faith into the evidence-based science of personalized lifestyle
+                medicine, where your needs are the central focus, and we guide you to eat
+                your way to optimal health! A personalized whole-person w(holistic)
+                approach using a Functional Medicine Nutrition protocol. We use Food As
+                Medicine. It is not a one-size-fits-all approach using synthetic pharmaceutical
+                drugs that only suppress and do not treat symptoms. We leave the medication
+                discussions to your primary care team of doctors. With The Rogue Doc, we
+                tailor your plan considering your unique (Nutri)genomic blueprint (how your
+                diet/nutritional status interacts with your genes and impacts your health),
+                epigenetics (how your environmental exposures interact with your genes and
+                affect your health), lifestyle (mind-body-spirit) including the mental,
+                emotional, and social factors, and your utmost concerns; the rest gets taken
+                care of as a side effect of your progress.
+            </p>
+            <p>
+                A poor diet, lack of essential nutrients, emotional stress, environmental
+                toxins, lack of exercise, poor sleep, and other lifestyle issues set the stage for
+                chronic disease to develop. We triage your concerns and form a dream team
+                collaboration to support you with a program that best suits your readiness and
+                budget. We help you implement the changes at a phased pace to guarantee
+                success while avoiding overwhelm. We teach you about clean living, cutting-edge modalities, and
+                high-quality third-party tested supplements to equip you with all the resources you need to start living
+                and feeling like the best version of yourself while transforming the lives around you. Be a catalyst for
+                change
+                and cause a ripple effect in your collective community by choosing <b><i>you</i></b>, our specialty! The
+                rest will follow by your example.
+            </p>
+            <p><b>To be informed when The Rogue Doc LLC launches and if our practice is the
+                    right fit for you, please leave your email to be notified.</b></p>
+
+            <form action="https://formspree.io/f/meqyknbe" id="notify-form" method="POST">
+                <input type="email" placeholder="Enter your email" name="email">
+                <input type="hidden" name="message" value="New submission!">
+                <input type="hidden" name="_next" value="https://theroguedoc.com">
+                <input type="submit" value="Notify Me">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /*
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const mCont = document.getElementById('modal-container');
+                mCont.classList.add('one');
+            }, 15000);
+        });
+        */
+
+        const play = document.querySelector('.play');
+        const video = document.querySelector('video');
+        const body = document.querySelector('body');
+
+        play.addEventListener('click', () => {
+            video.play();
+            play.style.display = 'none';
+
+            //scroll to video
+            document.querySelector('video').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        video.addEventListener('ended', () => {
+            // smooth scroll to about section
+            document.getElementById('about-sect').scrollIntoView({ behavior: 'smooth' });
+            body.classList.remove('of-hidden');
+            video.autoplay = true;
+            video.muted = true;
+            video.play();
+        });
+
+        //always start at top of page
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+
+        let form = document.getElementById('notify-form');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                console.log(response);
+                form.reset();
+                alert('Thank you for your submission!');
+            }).catch(error => {
+                console.log(error);
+                alert('Oops! There was a problem submitting your form');
+            });
+        });
+
+    </script>
+</body>
+
+</html>
